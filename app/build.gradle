@@ -21,7 +21,18 @@ android {
     dexOptions {
         javaMaxHeapSize "4g"
     }
+    productFlavors {
+        free {
+            applicationId "com.udacity.builditbigger.free"
+        }
+        paid {
+            applicationId "com.udacity.builditbigger.paid"
+        }
+    }
 
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
 }
 
 dependencies {
@@ -32,6 +43,7 @@ dependencies {
     compile 'com.android.support:design:23.1.1'
     compile project(path: ':jokesbackend', configuration: 'android-endpoints')
     compile 'com.google.appengine:appengine-api-1.0-sdk:1.2.0'
+    freeCompile 'com.google.android.gms:play-services-ads:7.5.0'
     provided 'com.google.appengine:appengine-endpoints:1.9.18'
     compile project(':jokedisplay')
 }
