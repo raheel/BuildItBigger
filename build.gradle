@@ -18,3 +18,13 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+task extraTask{
+    dependsOn ":jokesbackend:appengineRun"
+    project(":jokesbackend").afterEvaluate { backend ->
+        backend.extensions.appengine.daemon = true
+    }
+}
+
+extraTask.finalizedBy([":app:connectedAndroidTest",
+        ':jokesbackend:appengineStop'])
